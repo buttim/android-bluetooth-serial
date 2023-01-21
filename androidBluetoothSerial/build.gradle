@@ -3,9 +3,6 @@ apply plugin: 'kotlin-android'
 apply plugin: 'maven-publish'
 
 android {
-      lintOptions {
-          abortOnError false
-      }
 	compileSdkVersion 28
     defaultConfig {
         minSdkVersion 21

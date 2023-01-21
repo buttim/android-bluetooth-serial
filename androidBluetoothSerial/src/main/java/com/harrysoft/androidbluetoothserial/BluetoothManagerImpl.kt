@@ -16,6 +16,7 @@ internal class BluetoothManagerImpl(private val adapter: BluetoothAdapter) : Blu
     private val devices: MutableMap<String, BluetoothSerialDeviceImpl> = mutableMapOf()
 
     override val pairedDevices: Collection<BluetoothDevice>
+        @Suppress("MissingPermission")
         get() = adapter.bondedDevices
 
     override fun openSerialDevice(mac: String): Single<BluetoothSerialDevice> {
@@ -26,6 +27,7 @@ internal class BluetoothManagerImpl(private val adapter: BluetoothAdapter) : Blu
         return if (devices.containsKey(mac)) {
             Single.just(devices[mac]!!)
         } else {
+	    @Suppress("MissingPermission")
             Single.fromCallable {
                 try {
                     val device = adapter.getRemoteDevice(mac)

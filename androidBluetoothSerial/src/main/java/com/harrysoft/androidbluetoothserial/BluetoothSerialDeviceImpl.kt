@@ -26,11 +26,11 @@ internal class BluetoothSerialDeviceImpl constructor(
 
     private var owner: SimpleBluetoothDeviceInterfaceImpl? = null
 
-    override fun send(message: ByteArray): Completable {
+    override fun send(bytes: ByteArray): Completable {
             checkNotClosed()
         return Completable.fromAction {
             synchronized(outputStream) {
-                if (!closed.get()) outputStream.write(message)
+                if (!closed.get()) outputStream.write(bytes)
             }
         }
     }
