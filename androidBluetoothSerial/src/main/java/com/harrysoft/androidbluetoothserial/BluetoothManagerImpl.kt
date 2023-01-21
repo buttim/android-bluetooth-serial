@@ -1,6 +1,8 @@
 package com.harrysoft.androidbluetoothserial
 
+import android.util.Log
 import android.bluetooth.BluetoothAdapter
+import android.bluetooth.BluetoothSocket
 import android.bluetooth.BluetoothDevice
 import io.reactivex.Single
 import java.nio.charset.Charset
@@ -27,10 +29,22 @@ internal class BluetoothManagerImpl(private val adapter: BluetoothAdapter) : Blu
             Single.fromCallable {
                 try {
                     val device = adapter.getRemoteDevice(mac)
-                    val socket = device.createInsecureRfcommSocketToServiceRecord(SPP_UUID)
+                    var socket:BluetoothSocket?=null
+		      try {
+			socket= device.createRfcommSocketToServiceRecord(UUID.fromString("00001101-0000-1000-8000-00805F9B34FB"))
+			}
+			catch (ex:Exception) {
+			    try {
+				socket=device.javaClass.getMethod(
+					"createRfcommSocket", Int::class.javaPrimitiveType
+				  ).invoke(device, 1) as BluetoothSocket?
+				}
+				catch (ex:Exception) {
+				}
+			}
                     adapter.cancelDiscovery()
-                    socket.connect()
-                    val serialDevice = BluetoothSerialDeviceImpl(mac, socket, charset)
+		    socket?.connect()
+                    val serialDevice = BluetoothSerialDeviceImpl(mac, socket!!, charset)
                     devices[mac] = serialDevice
                     return@fromCallable serialDevice
                 } catch (e: Exception) {

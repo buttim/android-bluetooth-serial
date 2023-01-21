@@ -147,9 +147,9 @@ public class CommunicateViewModel extends AndroidViewModel {
     }
 
     // Adds a sent message to the conversation
-    private void onMessageSent(String message) {
+    private void onMessageSent(byte[] message) {
         // Add it to the conversation
-        messages.append(getApplication().getString(R.string.you_sent)).append(": ").append(message).append('\n');
+        messages.append(getApplication().getString(R.string.you_sent)).append(": ").append(message.toString()).append('\n');
         messagesData.postValue(messages.toString());
         // Reset the message box
         messageData.postValue("");
@@ -159,7 +159,7 @@ public class CommunicateViewModel extends AndroidViewModel {
     public void sendMessage(String message) {
         // Check we have a connected device and the message is not empty, then send the message
         if (deviceInterface != null && !TextUtils.isEmpty(message)) {
-            deviceInterface.sendMessage(message);
+            deviceInterface.sendMessage(message.getBytes());
         }
     }
 

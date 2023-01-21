@@ -6,7 +6,7 @@ interface SimpleBluetoothDeviceInterface {
      */
     val device: BluetoothSerialDevice
 
-    fun sendMessage(message: String)
+    fun sendMessage(message: ByteArray)
 
     /**
      * Set all of the listeners for the interfact
@@ -45,7 +45,7 @@ interface SimpleBluetoothDeviceInterface {
     }
 
     interface OnMessageSentListener {
-        fun onMessageSent(message: String)
+        fun onMessageSent(message: ByteArray)
     }
 
     interface OnErrorListener {

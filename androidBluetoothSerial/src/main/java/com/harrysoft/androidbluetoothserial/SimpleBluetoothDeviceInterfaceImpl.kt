@@ -21,7 +21,7 @@ internal class SimpleBluetoothDeviceInterfaceImpl(override val device: Bluetooth
                 .subscribe({ messageReceivedListener?.onMessageReceived(it) }, { errorListener?.onError(it) }))
     }
 
-    override fun sendMessage(message: String) {
+    override fun sendMessage(message: ByteArray) {
         device.checkNotClosed()
         compositeDisposable.add(device.send(message)
                 .subscribeOn(Schedulers.io())
