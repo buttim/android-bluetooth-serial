@@ -1,7 +1,7 @@
 apply plugin: 'com.android.application'
 
 android {
-    namespace 'com.harrysoft.androidsluetoothserial'
+    namespace 'com.harrysoft.androidbluetoothserial.demoapp'
     compileSdkVersion 33
     defaultConfig {
         applicationId "com.harrysoft.androidbluetoothserial"

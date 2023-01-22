@@ -105,6 +105,7 @@ public class MainActivity extends AppCompatActivity {
             text2 = view.findViewById(R.id.list_item_text2);
         }
 
+        @SuppressWarnings("MissingPermission")
         void setupView(BluetoothDevice device) {
             text1.setText(device.getName());
             text2.setText(device.getAddress());
