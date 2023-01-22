@@ -1,1 +1,2 @@
 include ':demoApplication', ':androidBluetoothSerial'
+rootProject.name = 'androidbluetoothserial'
