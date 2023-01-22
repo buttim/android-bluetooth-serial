@@ -5,7 +5,8 @@ plugins {
 }
 
 android {
-	compileSdkVersion 33
+    namespace 'com.harrysoft.androidbluetoothserial'
+    compileSdkVersion 33
     defaultConfig {
         minSdkVersion 21
         targetSdkVersion 33
