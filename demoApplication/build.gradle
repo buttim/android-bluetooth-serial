@@ -1,14 +1,12 @@
 apply plugin: 'com.android.application'
 
 android {
-      lintOptions {
-          abortOnError false
-      }
-      compileSdkVersion 28
+    namespace 'com.harrysoft.androidsluetoothserial'
+    compileSdkVersion 33
     defaultConfig {
         applicationId "com.harrysoft.androidbluetoothserial"
         minSdkVersion 21
-        targetSdkVersion 28
+        targetSdkVersion 33
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
